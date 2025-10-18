@@ -45,14 +45,16 @@ Str concat(Str a, Str b) {
 Str translate_to_bork(char c) {
     switch(c) {
     case 'a': case 'e': case 'i': case 'o': case 'u': {
-        char *res = alloc_str(2);
+        char *res = alloc_str(3);
         res[0] = c;
         res[1] = 'f';
+        res[2] = '\0';
         return make_Str(res);
     }
     }
-    char *res = alloc_str(1);
+    char *res = alloc_str(2);
     res[0] = c;
+    res[1] = '\0';
     return make_Str(res);
 }
 
