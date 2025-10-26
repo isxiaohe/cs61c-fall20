@@ -1,7 +1,7 @@
 .globl factorial
 
 .data
-n: .word 8
+n: .word 5
 
 .text
 # Don't worry about understanding the code in main
@@ -26,7 +26,24 @@ main:
 # a0 contains the number which we want to compute the factorial of
 # The return value should be stored in a0
 factorial:
+    # fact(n)
     # YOUR CODE HERE
+    addi sp sp -8 # push 2 words to stack
+    sw ra 4(sp)
+    sw a0 0(sp) # save n and return address to stack
+    addi a0 a0 -1 # a0 = n - 1
+    bge a0 zero L1 # if (n - 1 >= 0) goto L1
+    
+    addi a0 zero 1
+    addi sp sp 8
+    jr ra
+
+L1:
+    jal ra factorial # a0 = (n - 1)!
+    lw t0 0(sp) # t0 = n
+    lw ra 4(sp) # ra = return address
+    mul a0 a0 t0 # a0 = n!
+    addi sp sp 8
 
     # This is how you return from a function. You'll learn more about this later.
     # This should be the last line in your program.
