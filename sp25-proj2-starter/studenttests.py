@@ -41,25 +41,25 @@ class TestAbsLoss(unittest.TestCase):
         raise NotImplementedError("TODO")
 
         # create array0 in the data section
-        # TODO
+        array0 = t.array([0])
         # load address of `array0` into register a0
-        # TODO
+        t.input_array("a0", array0)
         # create array1 in the data section
-        # TODO
+        array1 = t.array([1])
         # load address of `array1` into register a1
-        # TODO
+        t.input_array("a1", array1)
         # set a2 to the length of the array
-        # TODO
+        t.input_value("a2", len(array0))
         # create a result array in the data section (fill values with -1)
-        # TODO
+        result_array = t.array([-1])
         # load address of `array2` into register a3
-        # TODO
+        t.input_array("a3", result_array)
         # call the `abs_loss` function
-        # TODO
+        t.call("abs_loss")
         # check that the result array contains the correct output
-        # TODO
+        t.check_array("a3", [1])
         # check that the register a0 contains the correct output
-        # TODO
+        t.check_value("a0", 1)
         # generate the `assembly/TestAbsLoss_test_simple.s` file and run it through venus
         t.execute()
 
